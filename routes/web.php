@@ -15,6 +15,10 @@ Route::get('/laravel-welcome', function () {
     return view('welcome');
 });
 
+Route::get('/uji-error', function () {
+    throw new \RuntimeException('Uji coba error server');
+});
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', function () {
