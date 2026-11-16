@@ -22,13 +22,15 @@
                     <tbody>
                         @forelse($buku as $item)
                         <tr class="border-b border-slate-700/50 hover:bg-slate-700/20">
-                            <td class="p-3 font-semibold text-white">{!! $item->judul !!}</td>
+                            <td class="p-3 font-semibold text-white">{{ $item->judul }}</td>
                             <td class="p-3">{{ $item->pengarang }}</td>
                             <td class="p-3"><span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs rounded">{{ $item->stok }} pcs</span></td>
                             <td class="p-3">
-                                <form action="{{ route('buku.destroy', $item->id) }}" method="POST">
-                                    @csrf @method('DELETE')
-                                    <button class="text-rose-400 hover:text-rose-300 text-xs">Hapus</button>
+                                <form action="{{ route('buku.destroy', $item->id) }}" method="POST" class="inline"
+                                      onsubmit="return confirm('Yakin ingin menghapus buku ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-rose-400 hover:text-rose-300 text-xs">Hapus</button>
                                 </form>
                             </td>
                         </tr>

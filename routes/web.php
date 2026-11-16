@@ -99,6 +99,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/buku-cari', [BukuController::class, 'cari'])->name('buku.cari');
         Route::get('/buku/{buku}/hapus', [BukuController::class, 'destroy'])->name('buku.hapus.rentan');
         Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show'])->name('peminjaman.show');
+        Route::delete('/buku/{buku}', [BukuController::class, 'destroy'])->name('buku.destroy');
     });
 });
 
