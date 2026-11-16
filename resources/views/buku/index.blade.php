@@ -6,7 +6,12 @@
                     <h2 class="text-xl font-bold text-white">Katalog & Master Data Buku</h2>
                     <p class="text-xs text-slate-400">Manajemen koleksi buku perpustakaan.</p>
                 </div>
-                <a href="{{ route('dashboard') }}" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm">&larr; Dashboard</a>
+                <div class="flex items-center gap-3">
+                    @can('kelola-buku')
+                        <a href="{{ route('buku.create') }}" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-medium">+ Tambah Buku</a>
+                    @endcan
+                    <a href="{{ route('dashboard') }}" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm">&larr; Dashboard</a>
+                </div>
             </div>
 
             <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 overflow-x-auto">
@@ -16,7 +21,9 @@
                             <th class="p-3">Judul Buku</th>
                             <th class="p-3">Pengarang</th>
                             <th class="p-3">Stok</th>
-                            <th class="p-3">Aksi</th>
+                            @can('kelola-buku')
+                                <th class="p-3">Aksi</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -25,17 +32,22 @@
                             <td class="p-3 font-semibold text-white">{{ $item->judul }}</td>
                             <td class="p-3">{{ $item->pengarang }}</td>
                             <td class="p-3"><span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs rounded">{{ $item->stok }} pcs</span></td>
-                            <td class="p-3">
-                                <form action="{{ route('buku.destroy', $item->id) }}" method="POST" class="inline"
-                                      onsubmit="return confirm('Yakin ingin menghapus buku ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-rose-400 hover:text-rose-300 text-xs">Hapus</button>
-                                </form>
-                            </td>
+                            @can('kelola-buku')
+                                <td class="p-3 flex items-center gap-3">
+                                    <a href="{{ route('buku.edit', $item->id) }}" class="text-amber-400 hover:text-amber-300 text-xs">Ubah</a>
+                                    <form action="{{ route('buku.destroy', $item->id) }}" method="POST" class="inline"
+                                          onsubmit="return confirm('Yakin ingin menghapus buku ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-rose-400 hover:text-rose-300 text-xs">Hapus</button>
+                                    </form>
+                                </td>
+                            @endcan
                         </tr>
                         @empty
-                        <tr><td colspan="4" class="p-4 text-center text-slate-500">Belum ada data buku.</td></tr>
+                        <tr>
+                            <td colspan="@can('kelola-buku') 4 @else 3 @endcan" class="p-4 text-center text-slate-500">Belum ada data buku.</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>

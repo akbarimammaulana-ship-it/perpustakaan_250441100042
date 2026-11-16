@@ -51,6 +51,23 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/buku-cari', [BukuController::class, 'cari'])->name('buku.cari');
+
+    Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
+
+    Route::middleware(['can:kelola-buku'])->group(function () {
+        Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
+        Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
+        Route::get('/buku/{buku}/edit', [BukuController::class, 'edit'])->name('buku.edit');
+        Route::put('/buku/{buku}', [BukuController::class, 'update'])->name('buku.update');
+        Route::patch('/buku/{buku}', [BukuController::class, 'update']);
+        Route::delete('/buku/{buku}', [BukuController::class, 'destroy'])->name('buku.destroy');
+    });
+
+    Route::get('/buku/{buku}', [BukuController::class, 'show'])->name('buku.show');
+
+    Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show'])->name('peminjaman.show');
+
     Route::middleware(['role:admin'])->group(function () {
         Route::get('/admin/dashboard', function () {
             return view('dashboard.admin');
@@ -64,8 +81,7 @@ Route::middleware(['auth'])->group(function () {
             return view('dashboard.petugas');
         })->name('dashboard.petugas');
 
-        Route::resource('buku', BukuController::class);
-        Route::resource('peminjaman', PeminjamanController::class)->except(['store']);
+        Route::resource('peminjaman', PeminjamanController::class)->except(['store', 'show']);
         Route::get('/laporan', [PeminjamanController::class, 'laporan'])->name('laporan.index');
     });
 
@@ -96,10 +112,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/katalog', [BukuController::class, 'katalog'])->name('katalog.index');
         Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
         Route::get('/riwayat-saya', [RiwayatPeminjamanController::class, 'index'])->name('riwayat.saya');
-        Route::get('/buku-cari', [BukuController::class, 'cari'])->name('buku.cari');
-        Route::get('/buku/{buku}/hapus', [BukuController::class, 'destroy'])->name('buku.hapus.rentan');
-        Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show'])->name('peminjaman.show');
-        Route::delete('/buku/{buku}', [BukuController::class, 'destroy'])->name('buku.destroy');
     });
 });
 
