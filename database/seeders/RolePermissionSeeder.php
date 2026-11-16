@@ -13,10 +13,8 @@ class RolePermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        // Reset cache role dan permission Spatie
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // 1. Daftar Permission
         $permissions = [
             'akses dashboard admin',
             'akses dashboard petugas',
@@ -44,12 +42,10 @@ class RolePermissionSeeder extends Seeder
             ]);
         }
 
-        // 2. Buat Role
         $roleAdmin   = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
         $rolePetugas = Role::firstOrCreate(['name' => 'petugas', 'guard_name' => 'web']);
         $roleSiswa   = Role::firstOrCreate(['name' => 'siswa', 'guard_name' => 'web']);
 
-        // 3. Sinkronisasi Permission ke Masing-Masing Role
         $roleAdmin->syncPermissions($permissions);
 
         $rolePetugas->syncPermissions([
@@ -77,7 +73,6 @@ class RolePermissionSeeder extends Seeder
             'ubah profil sendiri',
         ]);
 
-        // 4. Buat Akun Default untuk Pengujian Setiap Role
         $admin = User::firstOrCreate(
             ['email' => 'admin@gmail.com'],
             [
