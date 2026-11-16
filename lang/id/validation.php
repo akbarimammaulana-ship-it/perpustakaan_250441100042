@@ -1,0 +1,62 @@
+<?php
+
+return [
+    
+    'accepted'             => ':attribute harus diterima.',
+    'active_url'           => ':attribute bukan URL yang valid.',
+    'after'                => ':attribute harus berisi tanggal setelah :date.',
+    'alpha'                => ':attribute hanya boleh berisi huruf.',
+    'alpha_dash'           => ':attribute hanya boleh berisi huruf, angka, strip, dan garis bawah.',
+    'alpha_num'            => ':attribute hanya boleh berisi huruf dan angka.',
+    'array'                => ':attribute harus berupa sebuah array.',
+    'before'               => ':attribute harus berisi tanggal sebelum :date.',
+    'between'              => [
+        'numeric' => ':attribute harus bernilai antara :min sampai :max.',
+        'file'    => ':attribute harus berukuran antara :min sampai :max kilobita.',
+        'string'  => ':attribute harus berisi antara :min sampai :max karakter.',
+        'array'   => ':attribute harus memiliki :min sampai :max anggota.',
+    ],
+    'boolean'              => ':attribute harus bernilai true atau false.',
+    'confirmed'            => 'Konfirmasi :attribute tidak cocok.',
+    'date'                 => ':attribute bukan tanggal yang valid.',
+    'digits'               => ':attribute harus berisi :digits digit.',
+    'digits_between'       => ':attribute harus berisi antara :min dan :max digit.',
+    'email'                => ':attribute harus berupa alamat email yang valid.',
+    'exists'               => ':attribute yang dipilih tidak valid.',
+    'image'                => ':attribute harus berupa gambar.',
+    'in'                   => ':attribute yang dipilih tidak valid.',
+    'integer'              => ':attribute harus berupa bilangan bulat.',
+    'max'                  => [
+        'numeric' => ':attribute tidak boleh lebih dari :max.',
+        'file'    => ':attribute tidak boleh lebih dari :max kilobita.',
+        'string'  => ':attribute tidak boleh lebih dari :max karakter.',
+        'array'   => ':attribute tidak boleh lebih dari :max anggota.',
+    ],
+    'mimes'                => ':attribute harus berupa file bertipe: :values.',
+    'min'                  => [
+        'numeric' => ':attribute minimal harus bernilai :min.',
+        'file'    => ':attribute minimal harus berukuran :min kilobita.',
+        'string'  => ':attribute minimal harus berisi :min karakter.',
+        'array'   => ':attribute minimal harus memiliki :min anggota.',
+    ],
+    'numeric'              => ':attribute harus berupa angka.',
+    'required'             => 'Wajib mengisi kolom :attribute.',
+    'same'                 => ':attribute dan :other harus sama.',
+    'string'               => ':attribute harus berupa string.',
+    'unique'               => ':attribute sudah terdaftar / sudah digunakan.',
+    'url'                  => 'Format :attribute tidak valid.',
+
+    
+    'attributes' => [
+        'name'                  => 'Nama Lengkap',
+        'email'                 => 'Alamat Email',
+        'password'              => 'Kata Sandi',
+        'password_confirmation' => 'Konfirmasi Kata Sandi',
+        'title'                 => 'Judul Buku',
+        'author'                => 'Pengarang',
+        'publisher'             => 'Penerbit',
+        'year'                  => 'Tahun Terbit',
+        'isbn'                  => 'Nomor ISBN',
+        'stock'                 => 'Stok Buku',
+    ],
+];
