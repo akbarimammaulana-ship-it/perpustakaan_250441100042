@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Peminjaman;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PeminjamanController extends Controller
 {
@@ -69,6 +70,9 @@ class PeminjamanController extends Controller
     public function show($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
+
+        Gate::authorize('view', $peminjaman);
+
         return view('peminjaman.show', compact('peminjaman'));
     }
 }
