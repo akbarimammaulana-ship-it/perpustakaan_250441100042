@@ -19,7 +19,7 @@ class UserRoleSeeder extends Seeder
             ['email' => 'admin@gmail.com'],
             [
                 'name'     => 'Administrator Perpustakaan',
-                'password' => Hash::make('Adm!nPerpus#2026_042'),
+                'password' => Hash::make('Adm!nPerpus#Yoiki'),
             ]
         );
         $admin->email_verified_at = now();

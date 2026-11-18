@@ -77,7 +77,7 @@ class RolePermissionSeeder extends Seeder
             ['email' => 'admin@gmail.com'],
             [
                 'name' => 'Administrator Perpustakaan',
-                'password' => Hash::make('passwordadmin123'),
+                'password' => Hash::make('Adm!nPerpus#Yoiki'),
             ]
         );
         $admin->syncRoles([$roleAdmin]);
