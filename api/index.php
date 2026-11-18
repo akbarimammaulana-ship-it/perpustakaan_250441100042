@@ -29,3 +29,5 @@ $app = require_once __DIR__ . '/../bootstrap/app.php';
 $app->useStoragePath($tmpStorage);
 
 $app->handleRequest(Illuminate\Http\Request::capture());
+
+require __DIR__ . '/../public/index.php';
