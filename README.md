@@ -7,6 +7,18 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Deployment ke Vercel
+
+Tambahkan environment variable berikut di pengaturan proyek Vercel sebelum deploy:
+
+- `APP_KEY`: buat dengan `php artisan key:generate --show`.
+- `APP_URL`: URL deployment Vercel.
+- Kredensial database persisten (`DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD`) sesuai penyedia database.
+
+Jangan gunakan SQLite lokal sebagai database produksi karena filesystem function Vercel bersifat sementara. Jalankan migrasi terhadap database produksi dengan konfigurasi yang sama, misalnya `php artisan migrate --force`. Jika aplikasi menyimpan file unggahan yang harus bertahan, atur `FILESYSTEM_DISK` ke penyimpanan objek seperti S3 dan isi kredensialnya di pengaturan Vercel.
+
+Deployment membangun aset frontend melalui `npm run build`. Mode debug dimatikan dan cache/session disiapkan untuk runtime serverless.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
